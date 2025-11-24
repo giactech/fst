@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card form-container">
+
+    <form action="/process_divisions/" method="post">
+        <div class="title-box">
+            <h2>{{ title }}</h2>
+        </div>
+
+        <h3>Select Division(s):</h3>
+        <input type="hidden" name="date_now" value="{{ now.strftime('%d-%b-%Y_%H-%M-%S') }}">
+        <input type="hidden" name="json_func" value="{{ json_func }}">
+        
+        <div class="form-group">
+            <select id="divisions" name="selected_divisions" multiple size="8">
+                {% for division in divisions %}
+                    <option value="{{ division }}">{{ division }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <small class="hint-text">Hold Ctrl (or Cmd on Mac) to select multiple divisions</small>
+
+        <br>
+        
+        <button type="submit" class="button primary">Process Selected Divisions</button>
+    </form>
+</div>
+
+{% endblock %}

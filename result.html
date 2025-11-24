@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card form-container result-container">
+    
+    <div class="title-box">
+        <h2>{{ title }}</h2>
+    </div>
+
+    
+    {% if error_message %}
+        <div class="message error">
+            <p>Error occurred:</p>
+            <p>{{ error_message }}</p>
+            <p>Please check the logs or input files.</p>
+        </div>
+    {% else %}
+        <div class="message success">
+            <p>Files processed successfully!</p>
+        </div>
+
+        <h3>Available Downloads:</h3>
+        
+        <ul class="link-list">
+            {% for file_url in file_urls %}
+                <li>
+                    <a href="{{ file_url}}" download> 
+                        Download file {{ loop.index }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <hr>
+    <a href="/" class="button primary">Home Page</a>
+</div>
+
+{% endblock %}
